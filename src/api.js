@@ -9,7 +9,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 
 mongoose
-	.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+	.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 	.then(() => {
 		console.log('DATABASE CONNECTED')
 	})
