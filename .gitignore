@@ -1,0 +1,10 @@
+# dependencies
+/node_modules
+/coverage
+/.pnp
+.pnp.js
+
+.env
+functions
+
+.DS_Store
