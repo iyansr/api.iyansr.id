@@ -12,7 +12,7 @@
     "build": "NODE_ENV=production ./node_modules/.bin/netlify-lambda build src",
     "test": "NODE_ENV=test jest --testTimeout=10000 --forceExit",
     "test:coverage": "NODE_ENV=test jest --coverage --forceExit",
-    "test:coveralls": "NODE_ENV=test jest --coverage --forceExit && coveralls < coverage/lcov.info"
+    "test:coveralls": "NODE_ENV=test jest --coverage  --testTimeout=10000 --forceExit && coveralls < coverage/lcov.info"
   },
   "keywords": [
     "Api"
