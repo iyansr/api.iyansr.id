@@ -1,12 +1,9 @@
 const Post = require('./postModel')
-const Tag = require('../tag/tagModel')
-const mongoose = require('mongoose')
 
 class PostController {
 	static async getPost(req, res) {
 		try {
 			const post = await Post.findOne({ slug: req.params.slug })
-			console.log(req.params.slug)
 
 			res.json({
 				url: req.originalUrl,
