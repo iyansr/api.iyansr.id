@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const app = require('../api')
 const request = require('supertest')
 
@@ -6,6 +8,7 @@ describe('Blog Post Endpoint Test', () => {
 		const response = await request(app).get('/.netlify/functions/api/v1/blog')
 		expect(response.statusCode).toEqual(200)
 		expect(response.body).toHaveProperty('list')
+		expect(response.body).toHaveProperty('code')
 	})
 
 	it('should fetch individual post', async () => {
