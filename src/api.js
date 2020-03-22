@@ -10,7 +10,10 @@ const bodyParser = require('body-parser')
 
 if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
 	mongoose
-		.connect(process.env.MONGO_URL_TEST, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+		.connect(
+			`mongodb+srv://${process.env.MONGO_ADMIN}:${process.env.MONGO_PASSWORD}@cluster0-uzhdu.gcp.mongodb.net/test?retryWrites=true&w=majority`,
+			{ useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
+		)
 		.then(() => {
 			console.log('DATABASE CONNECTED TO DEVELOPMENT/TEST')
 		})
