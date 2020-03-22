@@ -8,12 +8,23 @@ const Route = require('./router')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 
-mongoose
-	.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-	.then(() => {
-		console.log('DATABASE CONNECTED')
-	})
-	.catch(err => console.log('ERROR CONNECTING TO DATABASE', err))
+if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+	mongoose
+		.connect(process.env.MONGO_URL_TEST, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+		.then(() => {
+			console.log('DATABASE CONNECTED TO DEVELOPMENT/TEST')
+		})
+		.catch(err => console.log('ERROR CONNECTING TO DATABASE', err))
+}
+
+if (process.env.NODE_ENV === 'production') {
+	mongoose
+		.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+		.then(() => {
+			console.log('DATABASE CONNECTED TO PRODUCTION')
+		})
+		.catch(err => console.log('ERROR CONNECTING TO DATABASE', err))
+}
 
 app.set('view engine', 'ejs')
 
@@ -28,6 +39,7 @@ app.use(`/.netlify/functions/api/v1`, Route)
 router.get('/', (req, res) => {
 	res.json({
 		hello: 'hi!',
+		nodeEnv: process.env.NODE_ENV,
 	})
 })
 

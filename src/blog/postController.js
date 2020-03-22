@@ -29,7 +29,7 @@ class PostController {
 
 			const posts = await Post.find(req.query)
 				.select(['-sanitizedHtml', '-markdown'])
-				.populate('tags', 'name')
+				.populate('tags')
 
 			res.status(200).json({
 				url: req.originalUrl,

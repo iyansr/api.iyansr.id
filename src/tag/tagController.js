@@ -25,6 +25,7 @@ class TagController {
 
 			const newTag = new Tag({
 				name: req.body.name,
+				className: req.body.className,
 			})
 
 			const savedTag = await newTag.save()
@@ -34,6 +35,7 @@ class TagController {
 				tag: savedTag,
 			})
 		} catch (error) {
+			console.log(error)
 			res.status(500).json({
 				message: 'Internal server error',
 			})

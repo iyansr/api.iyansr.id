@@ -7,6 +7,10 @@ const TagSchema = new Schema({
 		required: true,
 		unique: true,
 	},
+	className: {
+		type: String,
+		required: true,
+	},
 })
 
 module.exports = Tag = mongoose.model('tags', TagSchema)
