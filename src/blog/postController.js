@@ -3,7 +3,10 @@ const Post = require('./postModel')
 class PostController {
 	static async getPost(req, res) {
 		try {
-			const post = await Post.findOne({ slug: req.params.slug })
+			for (var i in req.query) {
+				req.query[i] = { $regex: req.query[i], $options: 'i' }
+			}
+			const post = await Post.findOne({ slug: req.params.slug, ...req.query })
 
 			if (!post) {
 				return res.status(404).json({

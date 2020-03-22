@@ -16,6 +16,25 @@ describe('Tag Post Endpoint Test', () => {
 		done()
 	})
 
+	it('should fail save new tag', async done => {
+		const response = await request(app)
+			.post('/.netlify/functions/api/v1/tag')
+			.send({
+				name: 'javascript',
+				className: 'javascript',
+			})
+		expect(response.statusCode).toEqual(400)
+		done()
+	})
+
+	it('should fail save new tag', async done => {
+		const response = await request(app)
+			.post('/.netlify/functions/api/v1/tag')
+			.send({})
+		expect(response.statusCode).toEqual(500)
+		done()
+	})
+
 	it('should fetch all tags', async () => {
 		const response = await request(app).get('/.netlify/functions/api/v1/tag')
 		expect(response.statusCode).toEqual(200)

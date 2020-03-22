@@ -12,7 +12,7 @@
     "build": "NODE_ENV=production ./node_modules/.bin/netlify-lambda build src",
     "test": "NODE_ENV=test jest --testTimeout=10000 --detectOpenHandles --verbose",
     "test:coverage": "NODE_ENV=test jest --coverage --detectOpenHandles --verbose",
-    "test:coveralls": "NODE_ENV=test jest --coverage --testTimeout=10000 --detectOpenHandles && cat ./coverage/lcov.info | coveralls"
+    "test:coveralls": "NODE_ENV=test jest --coverage --testTimeout=10000 --detectOpenHandles && coveralls < coverage/lcov.info"
   },
   "keywords": [
     "Api"

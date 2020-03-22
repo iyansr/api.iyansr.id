@@ -65,6 +65,13 @@ describe('Blog Post Endpoint Test', () => {
 		done()
 	})
 
+	it('should fail fetch individual post', async done => {
+		const id = 'asdad'
+		const response = await request(app).get(`/.netlify/functions/api/v1/blog/${id}?tags=asd`)
+		expect(response.statusCode).toEqual(500)
+		done()
+	})
+
 	afterAll(async () => {
 		try {
 			await mongoose.connection.db.dropDatabase()
