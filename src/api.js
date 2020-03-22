@@ -59,5 +59,6 @@ router.get('/', (req, res) => {
 })
 
 connectDB()
+
 module.exports = app
 module.exports.handler = serverless(app)
