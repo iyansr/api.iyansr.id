@@ -5,6 +5,15 @@ class PostController {
 		try {
 			const post = await Post.findOne({ slug: req.params.slug })
 
+			if (!post) {
+				return res.status(404).json({
+					url: req.originalUrl,
+					method: 'GET',
+					code: 404,
+					message: 'Post Not Found',
+				})
+			}
+
 			res.json({
 				url: req.originalUrl,
 				method: 'GET',

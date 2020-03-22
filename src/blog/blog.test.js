@@ -23,12 +23,26 @@ describe('Blog Post Endpoint Test', () => {
 		done()
 	})
 
+	it('should failed save new post', async done => {
+		const response = await request(app)
+			.post('/.netlify/functions/api/v1/blog')
+			.send({})
+		expect(response.statusCode).toEqual(500)
+		done()
+	})
+
 	it('should fetch all post', async done => {
 		const response = await request(app).get('/.netlify/functions/api/v1/blog')
 		expect(response.statusCode).toEqual(200)
 		expect(response.body).toHaveProperty('list')
 		expect(response.body).toHaveProperty('code')
 		expect(response.body.code).toEqual(200)
+		done()
+	})
+
+	it('should fail fetch all post', async done => {
+		const response = await request(app).get('/.netlify/functions/api/v1/blog?tags=asd')
+		expect(response.statusCode).toEqual(500)
 		done()
 	})
 
@@ -40,6 +54,14 @@ describe('Blog Post Endpoint Test', () => {
 		expect(response.body).toHaveProperty('post')
 		expect(response.body).toHaveProperty('code')
 		expect(response.body.code).toEqual(200)
+		done()
+	})
+
+	it('should fail fetch individual post', async done => {
+		const id = 'asdad'
+		const response = await request(app).get(`/.netlify/functions/api/v1/blog/${id}`)
+		expect(response.statusCode).toEqual(404)
+		expect(response.body.code).toEqual(404)
 		done()
 	})
 
