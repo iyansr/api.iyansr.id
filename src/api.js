@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
 		.then(() => {
 			console.log('DATABASE CONNECTED TO DEVELOPMENT/TEST')
 		})
-		.catch(err => console.log('ERROR CONNECTING TO DATABASE', err))
+		.catch(err => console.log('ERROR CONNECTING TO DATABASE DEVELOPMENT/TEST', err))
 }
 
 if (process.env.NODE_ENV === 'production') {
@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === 'production') {
 		.then(() => {
 			console.log('DATABASE CONNECTED TO PRODUCTION')
 		})
-		.catch(err => console.log('ERROR CONNECTING TO DATABASE', err))
+		.catch(err => console.log('ERROR CONNECTING TO DATABASE PRODUCTION', err))
 }
 
 app.set('view engine', 'ejs')
