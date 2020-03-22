@@ -13,28 +13,17 @@ const connectDB = async () => {
 		if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
 			await mongoose.connect(
 				`mongodb+srv://${process.env.MONGO_ADMIN}:${process.env.MONGO_PASSWORD}@cluster0-uzhdu.gcp.mongodb.net/test?retryWrites=true&w=majority`,
-				{ useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
-				err => {
-					if (!err) {
-						console.log('DATABASE CONNECTED TO DEVELOPMENT/TEST')
-					} else {
-						console.log('ERROR CONNECTING TO DATABASE DEVELOPMENT/TEST', err)
-					}
-				}
+				{ useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
 			)
 		}
 		if (process.env.NODE_ENV === 'production') {
-			await mongoose.connect(
-				process.env.MONGO_URL,
-				{ useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
-				err => {
-					if (!err) {
-						console.log('DATABASE CONNECTED TO PRODUCTION')
-					} else {
-						console.log('ERROR CONNECTING TO DATABASE PRODUCTION', err)
-					}
-				}
-			)
+			await mongoose.connect(process.env.MONGO_URL, {
+				useNewUrlParser: true,
+				useUnifiedTopology: true,
+				useCreateIndex: true,
+			})
+
+			console.log('DATABASE CONNECT TO PROD')
 		}
 	} catch (error) {
 		console.log('DATABASE ERROR', error)
