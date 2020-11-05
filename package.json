@@ -29,7 +29,7 @@
     "netlify-lambda": "^1.6.3",
     "sanitize-html": "^2.1.2",
     "serverless-http": "^2.5.0",
-    "shortid": "^2.2.15",
+    "shortid": "^2.2.16",
     "slugify": "^1.4.0"
   },
   "devDependencies": {
